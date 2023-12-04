@@ -187,7 +187,6 @@ if __name__ == '__main__':
                 end_time = time.time()
                 print("time comsuming: {}".format(end_time - begin_time))
                 print("training epoch:{}:{}%".format(epoch, i / train_minibatches * 100))
-            break
         end_time = time.time()
         print("time comsuming: {}".format(end_time - begin_time))
         if optimizer.param_groups[0]['lr']>0.00015 or epoch<5:
