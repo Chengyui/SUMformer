@@ -1,5 +1,5 @@
 # Rethinking Urban Mobility Prediction: A Super-Multivariate Time Series Forecasting Approach (SUMformer)
- This is the first pytorch implementation for Our Paper: Rethinking Urban Mobility Prediction: A Super-Multivariate Time Series Forecasting Approach.
+ This is the first pytorch implementation for Our Paper: Rethinking Urban Mobility Prediction: A Super-Multivariate Time Series Forecasting Approach.  https://arxiv.org/abs/2312.01699 
 
 ## Overview 
 
@@ -29,6 +29,8 @@ Our contributions to the long-term urban mobility prediction challenge using SUM
 <p align="center">
     <img src="images/space_vis.png" width="800" align="center">
 </p>
+
+
 
 ## Data Download
 
