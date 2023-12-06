@@ -21,13 +21,16 @@ Our contributions to the long-term urban mobility prediction challenge using SUM
   
 
   <p align="center">
-      <img src="images/wholearch.jpg" width="700" align="center">
+      <img src="images/wholearch.jpg" width="800" align="center">
   </p>
 
 ## Data Visualization
 
-![](../picture/space_vis.svg)
+<p align="center">
+    <img src="images/space_vis.png" width="800" align="center">
+</p>
 
 ## Data Download
 
 You could download the dataset from here: [Google Drive](https://drive.google.com/drive/folders/1Kdw-RsWYt7pLUlKNg_3R9Ypw6pZGTrCu?usp=drive_link)
+
