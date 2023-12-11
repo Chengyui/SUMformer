@@ -71,7 +71,8 @@ parser.add_argument('--peak_loss', action='store_true', help='Set this flag to T
 parser.add_argument('--layer_scaler',type=float,default=1)
 parser.add_argument('--Peak_eval',action='store_true')
 parser.add_argument('--accu_step',type=int,default=1,help='accumulative loss steps for saving memory')
-parser.add_argument('--layer_type',type=str,default='AD',help='choose the variant type for SUMformer')
+parser.add_argument('--layer_type',type=str,default='MD',help='choose the variant type for SUMformer')
+parser.add_argument('--layer_depth', default=[2,2,6,2], type=int,nargs='*',help ='The depth for each TVF block')
 args = parser.parse_args()
 
 def adjust_learning_rate(optimizer, epoch, learning_rate):
@@ -140,7 +141,7 @@ if __name__ == '__main__':
     model = Sumformer(args.SpaceH*args.SpaceW*args.Variable, args.In_T,args.N_T,args.seg_len,\
                         device=args.device,factor=args.router_factor,\
                         e_layers=args.e_layers,d_model=args.d_model,\
-                        n_heads=args.n_heads,win_size=args.win_size,layer_scaler=args.layer_scaler,layer_type = args.layer_type)
+                        n_heads=args.n_heads,win_size=args.win_size,layer_scaler=args.layer_scaler,layer_type = args.layer_type,layer_depth = args.layer_depth)
 
     model.to(args.device)
 
@@ -204,7 +205,7 @@ if __name__ == '__main__':
         outputs = []
         vals = []
         with torch.no_grad():
-            for i, (inputs, val) in enumerate(test_loader):
+            for i, (inputs, val) in enumerate(val_loader):
                 inputs = inputs.to(args.device)
                 output = model(inputs)
                 outputs.append(output.detach().cpu().numpy())
@@ -212,7 +213,7 @@ if __name__ == '__main__':
                 if i % 100 == 0:
                     end_time = time.time()
                     print("time comsuming: {}".format(end_time - begin_time))
-                    print("test epoch:{}:{}%".format(epoch, i / test_minibatches * 100))
+                    print("test epoch:{}:{}%".format(epoch, i / val_minibatches * 100))
 
         mse, mmae = MSE(np.concatenate(outputs), np.concatenate(vals)), MAE(np.concatenate(outputs),
                                                                              np.concatenate(vals))

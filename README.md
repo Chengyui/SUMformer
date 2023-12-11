@@ -36,3 +36,20 @@ Our contributions to the long-term urban mobility prediction challenge using SUM
 
 You could download the dataset from here: [Google Drive](https://drive.google.com/drive/folders/1Kdw-RsWYt7pLUlKNg_3R9Ypw6pZGTrCu?usp=drive_link)
 
+## Usage
+
+```angular2html
+python Sumformer_origin_exp_full.py --device cuda:1 --dataset NYC --pth pth/SUMformer_AD_128NYC.pth 
+--batch 16 --lr 0.00075
+--layer_scaler 1 --layer_type AD 
+--layer_depth [2,2,6,2]
+```
+If you want your own data.
+
+1. Make sure your traffic flow data in the format of (T,C,H,W).
+
+2. Modified the date and time interval in datasets/Generate_TAXI_PHV_hotmap.py
+3. Make sure the length of the time stamps match the traffic flow data.
+```angular2html
+python datasets/NYC_time_stamp.py to generate the time stamps for custom data. 
+```

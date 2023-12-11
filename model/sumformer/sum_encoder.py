@@ -101,10 +101,10 @@ class Encoder(nn.Module):
     The TVF block for SUMformer
     '''
     def __init__(self, e_blocks, win_size, d_model, n_heads, d_ff, block_depth, dropout,
-                in_seg_num = 10, factor=10,layer_scaler=1,layer_type='AD'):
+                in_seg_num = 10, factor=10,layer_scaler=1,layer_type='AD',layer_depth=[2,2,6,2]):
         super(Encoder, self).__init__()
         self.encode_blocks = nn.ModuleList()
-        self.block_depth = [1,1,1,1]
+        self.block_depth = layer_depth
         self.encode_blocks.append(scale_block(1, d_model, n_heads, d_ff, self.block_depth[0], dropout,\
                                             in_seg_num, factor,layer_scaler=layer_scaler,layer_type=layer_type))
         for i in range(1, e_blocks):
