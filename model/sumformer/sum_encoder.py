@@ -2,11 +2,27 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from einops import rearrange, repeat
-from .attn import FullAttention, AttentionLayer,\
-                    SUMformer_AD_layer,SUMformer_MD_layer,SUMformer_AL_layer,SUMformer_AF_layer,\
-                        SUMformer_AA_layer,SUMformer_TS
+from .attn import SUMformer_AD_layer,SUMformer_MD_layer,SUMformer_AL_layer,SUMformer_AF_layer,\
+                        SUMformer_AA_layer,SUMformer_TS_layer
 
 from math import ceil
+
+
+
+def get_layer(get_layer):
+    if get_layer == 'AD':
+        return SUMformer_AD_layer
+    elif get_layer == 'MD':
+        return SUMformer_MD_layer
+    elif get_layer == 'AL':
+        return SUMformer_AL_layer
+    elif get_layer == 'AA':
+        return SUMformer_AA_layer
+    elif get_layer == 'AF':
+        return SUMformer_AF_layer
+    elif get_layer == 'TS':
+        return SUMformer_TS_layer
+
 
 class SegMerging(nn.Module):
     '''
@@ -44,7 +60,7 @@ class scale_block(nn.Module):
     Every phase has one patch merging layers. The ratio in our paper is 2.
     '''
     def __init__(self, win_size, d_model, n_heads, d_ff, depth, dropout, \
-                    seg_num = 10, factor=10,index=0,layer_scaler=1):
+                    seg_num = 10, factor=10,index=0,layer_scaler=1,layer_type='AD'):
         super(scale_block, self).__init__()
 
         if (win_size > 1):
@@ -54,10 +70,19 @@ class scale_block(nn.Module):
         
         self.encode_layers = nn.ModuleList()
 
-        for i in range(depth):
-            # Several variants for options
-            self.encode_layers.append(SUMformer_AD_layer(seg_num, factor, d_model, n_heads, \
-                                                         d_ff, dropout, index=index, layer_scaler=layer_scaler))
+        SUMformer_layer = get_layer(layer_type)
+
+        if index<2:
+            for i in range(depth):
+                # Several variants for options
+                self.encode_layers.append(SUMformer_layer(seg_num, factor, d_model, n_heads, \
+                                                             d_ff, dropout, index=index, layer_scaler=layer_scaler))
+        else:
+            for i in range(depth):
+                # Several variants for options
+                self.encode_layers.append(SUMformer_layer(seg_num, factor, d_model, n_heads, \
+                                                             d_ff, dropout, index=index, layer_scaler=layer_scaler))
+
         self.norm = nn.LayerNorm(d_model)
     
     def forward(self, x):
@@ -76,15 +101,15 @@ class Encoder(nn.Module):
     The TVF block for SUMformer
     '''
     def __init__(self, e_blocks, win_size, d_model, n_heads, d_ff, block_depth, dropout,
-                in_seg_num = 10, factor=10,layer_scaler=1):
+                in_seg_num = 10, factor=10,layer_scaler=1,layer_type='AD'):
         super(Encoder, self).__init__()
         self.encode_blocks = nn.ModuleList()
         self.block_depth = [1,1,1,1]
         self.encode_blocks.append(scale_block(1, d_model, n_heads, d_ff, self.block_depth[0], dropout,\
-                                            in_seg_num, factor,layer_scaler=layer_scaler))
+                                            in_seg_num, factor,layer_scaler=layer_scaler,layer_type=layer_type))
         for i in range(1, e_blocks):
             self.encode_blocks.append(scale_block(win_size, d_model, n_heads, d_ff, self.block_depth[i], dropout,\
-                                            ceil(in_seg_num/win_size**i), factor,index=i,layer_scaler=layer_scaler))
+                                            ceil(in_seg_num/win_size**i), factor,index=i,layer_scaler=layer_scaler,layer_type=layer_type))
 
     def forward(self, x):
         encode_x = []

@@ -11,7 +11,7 @@ from math import ceil
 class Sumformer(nn.Module):
     def __init__(self, data_dim, in_len, out_len, seg_len, win_size = 4,
                 factor=10, d_model=512, d_ff = 1024, n_heads=8, e_layers=3,
-                dropout=0.0, baseline = False, device=torch.device('cuda:0'),layer_scaler=1):
+                dropout=0.0, baseline = False, device=torch.device('cuda:0'),layer_scaler=1,layer_type='AD'):
         super(Sumformer, self).__init__()
         self.data_dim = data_dim
         self.in_len = in_len
@@ -19,6 +19,7 @@ class Sumformer(nn.Module):
         self.seg_len = seg_len
         self.merge_win = win_size
         self.d_layers = 0
+        self.layer_type=layer_type
 
         self.baseline = baseline
 
@@ -36,7 +37,7 @@ class Sumformer(nn.Module):
 
         # Encoder
         self.encoder = Encoder(e_layers, win_size, d_model, n_heads, d_ff, block_depth = 5, \
-                                    dropout = dropout,in_seg_num = (self.pad_in_len // seg_len), factor = factor,layer_scaler=layer_scaler)
+                                    dropout = dropout,in_seg_num = (self.pad_in_len // seg_len), factor = factor,layer_scaler=layer_scaler,layer_type=self.layer_type)
 
         self.predict_linear = nn.ModuleList([nn.Linear(ceil(in_len / (seg_len * win_size ** (a)))*d_model,self.out_len) for a in range(e_layers)])
         self.dropout = nn.Dropout(0.01)

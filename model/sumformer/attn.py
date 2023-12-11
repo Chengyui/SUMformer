@@ -11,6 +11,7 @@ from .FourierCorrelation import FourierCrossAttention,Cross_grid_fourierAttentio
 from .Frequency_Enhanced_Net import series_decomp,series_decomp_multi
 import math
 from .AdditiveAttention import AdditiveAttention
+from .gconv_standalone import GConv
 
 
 def init_(tensor):
@@ -83,7 +84,7 @@ class AttentionLayer(nn.Module):
 class SUMformer_AD_layer(nn.Module):
     '''
     MHSA for TSB
-    Neural dictionary for ISSB
+    Neural dictionary for ISSB :https://proceedings.mlr.press/v97/lee19d.html
     LFSB for filter the lower frequency band
     '''
 
@@ -275,7 +276,7 @@ class SUMformer_MD_layer(nn.Module):
 class SUMformer_AL_layer(nn.Module):
     '''
     MHSA for TSB
-    Low-rank projection for ISSB
+    Low-rank projection for ISSB: https://arxiv.org/abs/2006.04768
     LFSB for filter the lower frequency band
     '''
 
@@ -460,7 +461,7 @@ class SUMformer_AF_layer(nn.Module):
 class SUMformer_AA_layer(nn.Module):
     '''
     MHSA for TSB
-    Neural dictionary for ISSB
+    Additive attention for ISSB : from https://arxiv.org/abs/2108.09084
     LFSB for filter the lower frequency band
     '''
 
@@ -540,14 +541,14 @@ class SUMformer_AA_layer(nn.Module):
 
         return frq_enc
 
-class SUMformer_TS(nn.Module):
+class SUMformer_TS_layer(nn.Module):
     '''
     Mix the Spatial-Temporal tokens together using Neural Dictionary for correlation capture
     LFSB for filter the lower frequency band
     '''
 
     def __init__(self, seg_num, factor, d_model, n_heads, d_ff=None, dropout=0.1, index=0,layer_scaler=1):
-        super(SUMformer_TS, self).__init__()
+        super(SUMformer_TS_layer, self).__init__()
         d_ff = d_ff or 4 * d_model
         self.cross_head = 8
         self.seg_num = seg_num
