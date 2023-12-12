@@ -27,11 +27,11 @@ Our contributions to the long-term urban mobility prediction challenge using SUM
 ## Seven Variants for SUMformer
 
 <p align="center">
-    <img src="images/spatial_att.jpg" width="800" align="center">
+    <img src="images/spatial_att.jpg" width="600" align="center">
 </p>
 
   <p align="center">
-      <img src="images/variants.jpg" width="800" align="center">
+      <img src="images/variants.jpg" width="600" align="center">
   </p>
 
 ## Data Visualization
