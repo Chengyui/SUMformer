@@ -66,5 +66,5 @@ If you want to use your own data to evaluate SUMformer.
 python datasets/NYC_time_stamp.py to generate the time stamps for custom data. 
 ```
 ## Extra Exploration
-We also tested two type of auxiliary loss function in our model but did not work for Super-Multivariate Time Series Forecasting as shown in the two dictionary [PeakLoss](https://dl.acm.org/doi/abs/10.1145/3583780.3615159) and [SharpLoss](https://proceedings.neurips.cc/paper_files/paper/2019/hash/466accbac9a66b805ba50e42ad715740-Abstract.html).
+We also tested two type of auxiliary loss function in our model but did not work for Super-Multivariate Time Series Forecasting as shown in the two directory above: [PeakLoss](https://dl.acm.org/doi/abs/10.1145/3583780.3615159) and [SharpLoss](https://proceedings.neurips.cc/paper_files/paper/2019/hash/466accbac9a66b805ba50e42ad715740-Abstract.html).
 If you are interested in auxiliary loss in time series, please feel free to discuss it with us.
