@@ -44,7 +44,7 @@ python Sumformer_origin_exp_full.py --device cuda:1 --dataset NYC --pth pth/SUMf
 --layer_scaler 1 --layer_type AD 
 --layer_depth [2,2,6,2]
 ```
-If you want your own data.
+If you want to use your own data to evaluate SUMformer.
 
 1. Make sure your traffic flow data in the format of (T,C,H,W).
 
