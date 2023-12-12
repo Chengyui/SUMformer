@@ -11,7 +11,7 @@ import torch
 from torch.utils.data import DataLoader
 
 def time_continues(timestamps):
-    fixed_interval = timestamps[1] - timestamps[0]  # 计算第一个时间戳与第二个时间戳之间的时间间隔
+    fixed_interval = timestamps[1] - timestamps[0]  # calculate the interval
     
     is_continuous = True
     

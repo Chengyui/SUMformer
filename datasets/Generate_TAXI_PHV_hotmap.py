@@ -10,7 +10,6 @@ def phv_time_stamp_generate(min=30,start_time_str = '2023-02-26 00:00:00',end_ti
     # interval 30min
     delta = datetime.timedelta(minutes=min)
 
-    # 存储时间戳的列表
     timestamps = []
 
     dt = start_dt

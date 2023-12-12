@@ -17,7 +17,7 @@ import os
 import random
 from PeakLoss.peakloss import peak_loss
 
-fix_seed = 2021
+fix_seed = 2024
 random.seed(fix_seed)
 torch.manual_seed(fix_seed)
 np.random.seed(fix_seed)
@@ -61,7 +61,7 @@ parser.add_argument('--no_hid', action='store_true', help='Set this flag to True
 parser.add_argument('--dilat', action='store_true', help='Set this flag to True.')
 parser.add_argument('--test', action='store_true', help='Set this flag to True.')
 parser.add_argument('--seg_len',type=int,default=16)
-parser.add_argument('--router_factor',type=int,default=256)
+parser.add_argument('--spatial_factor',type=int,default=256)
 parser.add_argument('--d_model',type=int,default=128)
 parser.add_argument('--e_layers',type=int,default=4)
 parser.add_argument('--n_heads',type=int,default=4)
@@ -71,7 +71,7 @@ parser.add_argument('--peak_loss', action='store_true', help='Set this flag to T
 parser.add_argument('--layer_scaler',type=float,default=1)
 parser.add_argument('--Peak_eval',action='store_true')
 parser.add_argument('--accu_step',type=int,default=1,help='accumulative loss steps for saving memory')
-parser.add_argument('--layer_type',type=str,default='MD',help='choose the variant type for SUMformer')
+parser.add_argument('--layer_type',type=str,default='AD',help='choose the variant type for SUMformer:{AD,MD,AL,AA,AF,TS}')
 parser.add_argument('--layer_depth', default=[2,2,6,2], type=int,nargs='*',help ='The depth for each TVF block')
 args = parser.parse_args()
 
@@ -139,11 +139,12 @@ if __name__ == '__main__':
     Define model
     '''
     model = Sumformer(args.SpaceH*args.SpaceW*args.Variable, args.In_T,args.N_T,args.seg_len,\
-                        device=args.device,factor=args.router_factor,\
+                        device=args.device,factor=args.spatial_factor,\
                         e_layers=args.e_layers,d_model=args.d_model,\
                         n_heads=args.n_heads,win_size=args.win_size,layer_scaler=args.layer_scaler,layer_type = args.layer_type,layer_depth = args.layer_depth)
 
     model.to(args.device)
+    # model.load_state_dict(torch.load(args.pth, map_location=args.device))
 
     total_params = sum(p.numel() for p in model.parameters())
     print(f"Total Parameters: {total_params}")
@@ -231,6 +232,8 @@ if __name__ == '__main__':
         plot(MSE_list, args.pth[:-4])
         with torch.cuda.device(args.device):
             torch.cuda.empty_cache()
+        # if epoch%5==1:
+        #     model.load_state_dict(torch.load(args.pth, map_location=args.device))
     plot(MSE_list, args.pth[:-4])
 
     '''
@@ -238,7 +241,7 @@ if __name__ == '__main__':
     '''
     outputs = []
     tests = []
-    model = model.load_state_dict(torch.load(args.pth, map_location=args.device))
+    model.load_state_dict(torch.load(args.pth, map_location=args.device))
     model.eval()
     with torch.no_grad():
         for i, (inputs, test) in enumerate(test_loader):

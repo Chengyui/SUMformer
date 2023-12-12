@@ -38,12 +38,24 @@ You could download the dataset from here: [Google Drive](https://drive.google.co
 
 ## Usage
 
+### Hyperparameter Settings
+
+Here we list the hyper-parameters we used in the following table.
+
+| Model\Dataset | TaxiBJ                                                                                                                    | NYC                                                                                                                     |
+|------------|---------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------| 
+| SUMformer  | lr = 0.0005 layer_scaler = 0.01 spatial_factor = 256 d_model = 128 layer_type = AD/MD/AL/AA/AF/TS layer_depth = [1,1,1,1] | lr = 0.00075 layer_scaler = 1 spatial_factor = 256 d_model = 128 layer_type = AD/MD/AL/AA/AF/TS layer_depth = [2,2,6,2] |
+
+
+### Run
 ```angular2html
 python Sumformer_origin_exp_full.py --device cuda:1 --dataset NYC --pth pth/SUMformer_AD_128NYC.pth 
 --batch 16 --lr 0.00075
 --layer_scaler 1 --layer_type AD 
---layer_depth [2,2,6,2]
+--layer_depth 2 2 6 2
 ```
+
+### Custom Data
 If you want to use your own data to evaluate SUMformer.
 
 1. Make sure your traffic flow data in the format of (T,C,H,W).

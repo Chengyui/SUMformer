@@ -11,7 +11,6 @@ from .FourierCorrelation import FourierCrossAttention,Cross_grid_fourierAttentio
 from .Frequency_Enhanced_Net import series_decomp,series_decomp_multi
 import math
 from .AdditiveAttention import AdditiveAttention
-from .gconv_standalone import GConv
 
 
 def init_(tensor):

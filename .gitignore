@@ -1,7 +1,6 @@
 datasets/Chengdu
 datasets/NYC
 datasets/taxibj
-*.pth
 *.mp4
 .idea/
 *.pyc
