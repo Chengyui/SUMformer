@@ -78,3 +78,121 @@ python datasets/NYC_time_stamp.py to generate the time stamps for custom data.
 ## Extra Exploration
 We also tested two type of auxiliary loss function in our model but did not work for Super-Multivariate Time Series Forecasting as shown in the two directory above: [PeakLoss](https://dl.acm.org/doi/abs/10.1145/3583780.3615159) and [SharpLoss](https://proceedings.neurips.cc/paper_files/paper/2019/hash/466accbac9a66b805ba50e42ad715740-Abstract.html).
 If you are interested in auxiliary loss in time series, please feel free to discuss it with us.
+## Acknowledgement
+
+```bibtex
+@inproceedings{zhang2023unlocking,
+  title={Unlocking the Potential of Deep Learning in Peak-Hour Series Forecasting},
+  author={Zhang, Zhenwei and Wang, Xin and Xie, Jingyuan and Zhang, Heling and Gu, Yuantao},
+  booktitle={Proceedings of the 32nd ACM International Conference on Information and Knowledge Management},
+  pages={4415--4419},
+  year={2023}
+}
+```
+```bibtex
+@article{guen2019shape,
+  title={Shape and time distortion loss for training deep time series forecasting models: Presented at the NeurIPS},
+  author={Guen, V and Thome, N},
+  year={2019}
+}
+```
+```bibtex
+@inproceedings{gao2022simvp,
+  title={Simvp: Simpler yet better video prediction},
+  author={Gao, Zhangyang and Tan, Cheng and Wu, Lirong and Li, Stan Z},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={3170--3180},
+  year={2022}
+}
+```
+```bibtex
+@inproceedings{tau,
+  title={Temporal attention unit: Towards efficient spatiotemporal predictive learning},
+  author={Tan, Cheng and Gao, Zhangyang and Wu, Lirong and Xu, Yongjie and Xia, Jun and Li, Siyuan and Li, Stan Z},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={18770--18782},
+  year={2023}
+}
+```
+```bibtex
+@inproceedings{crossformer,
+  title={Crossformer: Transformer utilizing cross-dimension dependency for multivariate time series forecasting},
+  author={Zhang, Yunhao and Yan, Junchi},
+  booktitle={The Eleventh International Conference on Learning Representations},
+  year={2022}
+}
+```
+```bibtex
+@article{patchtst,
+  title={A time series is worth 64 words: Long-term forecasting with transformers},
+  author={Nie, Yuqi and Nguyen, Nam H and Sinthong, Phanwadee and Kalagnanam, Jayant},
+  journal={arXiv preprint arXiv:2211.14730},
+  year={2022}
+}
+```
+```bibtex
+@article{FNO,
+  title={Fourier neural operator for parametric partial differential equations},
+  author={Li, Zongyi and Kovachki, Nikola and Azizzadenesheli, Kamyar and Liu, Burigede and Bhattacharya, Kaushik and Stuart, Andrew and Anandkumar, Anima},
+  journal={arXiv preprint arXiv:2010.08895},
+  year={2020}
+}
+```
+```bibtex
+@inproceedings{fedformer,
+  title={Fedformer: Frequency enhanced decomposed transformer for long-term series forecasting},
+  author={Zhou, Tian and Ma, Ziqing and Wen, Qingsong and Wang, Xue and Sun, Liang and Jin, Rong},
+  booktitle={International Conference on Machine Learning},
+  pages={27268--27286},
+  year={2022},
+  organization={PMLR}
+}
+```
+```bibtex
+@article{TCN,
+  title={An empirical evaluation of generic convolutional and recurrent networks for sequence modeling},
+  author={Bai, Shaojie and Kolter, J Zico and Koltun, Vladlen},
+  journal={arXiv preprint arXiv:1803.01271},
+  year={2018}
+}
+```
+```bibtex
+@inproceedings{Nlinear,
+  title={Are transformers effective for time series forecasting?},
+  author={Zeng, Ailing and Chen, Muxi and Zhang, Lei and Xu, Qiang},
+  booktitle={Proceedings of the AAAI conference on artificial intelligence},
+  volume={37},
+  number={9},
+  pages={11121--11128},
+  year={2023}
+}
+```
+```bibtex
+@inproceedings{tang2023swinlstm,
+  title={SwinLSTM: Improving Spatiotemporal Prediction Accuracy using Swin Transformer and LSTM},
+  author={Tang, Song and Li, Chuang and Zhang, Pu and Tang, RongNian},
+  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},
+  pages={13470--13479},
+  year={2023}
+}
+```
+```bibtex
+@article{mlpmixer,
+  title={Mlp-mixer: An all-mlp architecture for vision},
+  author={Tolstikhin, Ilya O and Houlsby, Neil and Kolesnikov, Alexander and Beyer, Lucas and Zhai, Xiaohua and Unterthiner, Thomas and Yung, Jessica and Steiner, Andreas and Keysers, Daniel and Uszkoreit, Jakob and others},
+  journal={Advances in neural information processing systems},
+  volume={34},
+  pages={24261--24272},
+  year={2021}
+}
+```
+```bibtex
+@article{gao2022earthformer,
+  title={Earthformer: Exploring space-time transformers for earth system forecasting},
+  author={Gao, Zhihan and Shi, Xingjian and Wang, Hao and Zhu, Yi and Wang, Yuyang Bernie and Li, Mu and Yeung, Dit-Yan},
+  journal={Advances in Neural Information Processing Systems},
+  volume={35},
+  pages={25390--25403},
+  year={2022}
+}
+```
