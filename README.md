@@ -1,4 +1,4 @@
-# Rethinking Urban Mobility Prediction: A Super-Multivariate Time Series Forecasting Approach (SUMformer)
+# Rethinking Urban Mobility Prediction: A Super-Multivariate Time Series Forecasting Approach (Accepted as TITS regular paper)
  This is the first pytorch implementation for Our Paper: [Rethinking Urban Mobility Prediction: A Super-Multivariate Time Series Forecasting Approach](https://arxiv.org/abs/2312.01699).
  
  The paper was **Accepted** as Regular Paper (11-Nov-2024) in [IEEE Transactions on Intelligent Transportation Systems](https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=6979) (TITS)!!!
